@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+          margin: 0;
+          padding: 0; 
+          box-sizing: border-box;      
+        }
+        body{
+          font-family: arial;
+        }
+        h1{
+            font-size: 40px;
+            text-align: center;
+            font-weight: 100;
+            letter-spacing: 1px;
+            margin-top: 2vh;
+        }
+        p{
+            font-size: 100px;
+            font-weight: 800;
+            margin-top: 30vh;
+            position: absolute;
+            margin-left: 11cm;
+            color: rgb(26, 26, 26);
+        }
+        #tens{
+          color: rgb(100, 100, 100);
+        }
+
+        .button{
+            margin-top: 70vh;
+            margin-left: 12.8cm;
+        }
+        button{
+            background-color: rgb(220, 220, 220);
+            border: rgb(220, 220, 220) solid 1.5px;
+            padding: 1px;
+            font-size: 30px;
+            text-align: center;
+            border-radius: 50%;
+            height:80px;
+            width: 80px;
+            margin-left:20px ;
+            font-weight: 100;
+            transition: 0.7s ease;
+        }
+        button:hover{
+          border: rgb(0, 0, 0) solid 2px;
+        }
+    
+       </style>
+</head>
+<body>
+    
+    <div class="cont">
+        <h1>Stop Watch</h1>
+        <p><span id="min">00</span>:<span id="second">00</span>.<span id="tens">00</span></p>
+        <diV class="button">
+          <button id="btn-start"><i class="fa-solid fa-play"></i></button>
+          <button id="btn-stop"><i class="fa-solid fa-stop"></i></button>
+          <button id="btn-reset"><i class="fa-solid fa-rotate-left"></i></button>
+        </diV>
+      </div>
+
+      <script>
+        var min = 00;
+       var second = 00;
+       var tens = 00,
+       OutputMin = document.getElementById('min'),
+       OutputSecond = document.getElementById('second'),
+       OutputTens = document.getElementById('tens'),
+       buttontStart = document.getElementById('btn-start'),
+       buttonStop = document.getElementById('btn-stop'),
+       buttonReset = document.getElementById('btn-reset');
+       var Interval;
+
+       buttontStart.addEventListener('click', () => {
+        clearInterval(Interval);
+        Interval = setInterval(startTime, 10);
+       });
+       buttonStop.addEventListener('click', () => {
+        clearInterval(Interval);
+       });
+       buttonReset.addEventListener('click', () => {
+        clearInterval(Interval);
+        tens = '00';
+        second = "00";
+        min = '00';
+        OutputTens.innerHTML =tens;
+        OutputMin.innerHTML = min;
+        OutputSecond.innerHTML = second;
+       });
+
+       function startTime(){
+        tens++;
+     
+        if(tens <= 9){
+          OutputTens.innerHTML = '0' + tens;         
+        }
+        if(tens > 9){
+          OutputTens.innerHTML = tens; 
+        }
+       
+        if(tens > 99 ){
+          second++;
+          OutputSecond.innerHTML = '0' + second;
+          tens = 0;
+          OutputTens.innerHTML = '0' + tens;         
+        }
+
+        if(second > 9){
+          OutputSecond.innerHTML = second;
+        }
+
+        if(second > 59 ){
+          min++;
+          OutputMin.innerHTML = '0' + min;
+          second = 0;
+          OutputSecond.innerHTML = '0' + second;         
+        }
+        if(min > 9){
+          OutputMin.innerHTML = min;
+        }
+       }
+
+      </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+
+</body>
+</html>
